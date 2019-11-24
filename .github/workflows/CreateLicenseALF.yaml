@@ -9,13 +9,16 @@ jobs:
       matrix:
         unity-version: [2018.4.12f1]
     steps:
-    - run: wget -nv https://beta.unity3d.com/download/59ddc4c59b4f/UnitySetup-2018.4.12f1 -O UnitySetUp
-    - run: sudo chmod +x UnitySetup
+    - run: |
+        wget "https://beta.unity3d.com/download/59ddc4c59b4f/UnitySetup-2018.4.12f1" -O ./UnitySetUp
+        ls -l
+        sudo chmod +x UnitySetup
     - run: echo y | ./UnitySetup \
         --unattended \
         --install-location=/opt/Unity \
         --verbose \
-        --download-location=/tmp/unity
+        --download-location=/tmp/unity \
+        --components=Unity
     - run: rm UnitySetup && \
         rm -rf /tmp/unity && \
         rm -rf /root/.local/share/Trash/*
