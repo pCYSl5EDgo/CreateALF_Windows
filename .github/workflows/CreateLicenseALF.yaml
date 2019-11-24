@@ -12,8 +12,8 @@ jobs:
     - run: |
         wget "https://beta.unity3d.com/download/59ddc4c59b4f/UnitySetup-2018.4.12f1" -O ./UnitySetUp
         ls -l
-        sudo chmod +x UnitySetup
-    - run: echo y | ./UnitySetup \
+        sudo chmod +x UnitySetUp
+    - run: echo y | ./UnitySetUp \
         --unattended \
         --install-location=/opt/Unity \
         --verbose \
