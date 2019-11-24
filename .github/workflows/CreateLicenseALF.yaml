@@ -12,8 +12,7 @@ jobs:
     - run: |
         gem install u3d
         u3d install ${{ matrix.unity-version }} --packages Unity
-    - run: dir "C:/Program Files/Unity_${{ matrix.unity-version }}"
-    - run: \& 'C:/Program Files/Unity_${{ matrix.unity-version }}/Editor/Unity.exe' -quit -batchmode -nographics -logfile -createManualActivationFile
+        u3d run -quit -batchmode -nographics -logfile -createManualActivationFile
 
     - name: Create Release
       id: create_release
