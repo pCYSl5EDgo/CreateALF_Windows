@@ -11,5 +11,5 @@ jobs:
     steps:
     - run: |
         gem install u3d
-        u3d install ${{ strategy.matrix.unity-version }} --packages Unity
+        u3d install ${{ matrix.unity-version }} --packages Unity
         u3d list
