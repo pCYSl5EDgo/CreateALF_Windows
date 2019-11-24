@@ -12,6 +12,7 @@ jobs:
     - run: |
         gem install u3d
         u3d install ${{ matrix.unity-version }} --packages Unity
+        u3d uninstall 2018.3.7f1
         u3d list
         Start-Process -FilePath "C:\Program Files\Unity_${{ matrix.unity-version }}\Editor\Unity.exe" -ArgumentList -quit -batchmode -nographics -logfile -createManualActivationFile -Wait
 
