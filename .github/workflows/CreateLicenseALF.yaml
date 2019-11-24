@@ -10,5 +10,5 @@ jobs:
     steps:
     - run: Invoke-WebRequest https://download.unity3d.com/download_unity/497f083a43af/Windows64EditorInstaller/UnitySetup64-2018.4.13f1.exe -o UnitySetup64.exe
     - run: dir
-    - run: Start-Process -FilePath UnitySetup64.exe -ArgumentList "-UI=reduced" "/D=C:\Program Files\Unity" -Wait
+    - run: Start-Process -FilePath UnitySetup64.exe -ArgumentList "-UI=reduced" "/D=`"C:\Program Files\Unity\`"" -Wait
     - run: dir "C:\Program Files\Unity"
