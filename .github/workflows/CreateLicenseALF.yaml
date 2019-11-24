@@ -4,10 +4,12 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: windows-latest
-    
+    strategy:
+      matrix:
+        unity-version: [2018.4.12f1]
     steps:
     - run: |
         gem install u3d
-        u3d available
+        u3d install ${{ strategy.matrix.unity-version }} --packages Unity
+        u3d list
