@@ -13,14 +13,8 @@ jobs:
         wget "https://beta.unity3d.com/download/59ddc4c59b4f/UnitySetup-2018.4.12f1" -O ./UnitySetUp
         ls -l
         sudo chmod +x UnitySetUp
-    - run: echo y | ./UnitySetUp \
-        --unattended \
-        --install-location=/opt/Unity \
-        --verbose \
-        --download-location=/tmp/unity \
-        --components=Unity
-    - run: rm UnitySetUp && \
-        rm -rf /tmp/unity && \
-        rm -rf /root/.local/share/Trash/*
+        ls -l
+        echo y | ./UnitySetUp --unattended --install-location=/opt/Unity --verbose --download-location=/tmp/unity --components=Unity
+    - run: rm UnitySetUp && rm -rf /tmp/unity && rm -rf /root/.local/share/Trash/*
     - run: ls -l /opt
     - run: ls -l /opt/Unity
