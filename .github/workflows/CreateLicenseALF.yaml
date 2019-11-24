@@ -10,7 +10,7 @@ jobs:
         unity-version: [2018.4.12f1]
     steps:
     - run: wget -nv https://beta.unity3d.com/download/59ddc4c59b4f/UnitySetup-2018.4.12f1 -O UnitySetUp
-    - run: chmod +x UnitySetup
+    - run: sudo chmod +x UnitySetup
     - run: echo y | ./UnitySetup \
         --unattended \
         --install-location=/opt/Unity \
