@@ -9,5 +9,5 @@ jobs:
     
     steps:
     - run: |
-      gem install u3d
-      u3d available
+        gem install u3d
+        u3d available
