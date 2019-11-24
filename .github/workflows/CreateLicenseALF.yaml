@@ -13,8 +13,10 @@ jobs:
         gem install u3d
         u3d install ${{ matrix.unity-version }} --packages Unity
         u3d uninstall 2018.3.7f1
-        u3d list
-        u3d run -- -quit -batchmode -nographics -logfile -createManualActivationFile
+        
+    - run: u3d list
+    
+    - run: u3d run -- -quit -batchmode -nographics -logfile -createManualActivationFile
 
     - name: Create Release
       id: create_release
