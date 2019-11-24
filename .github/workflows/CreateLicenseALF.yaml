@@ -1,0 +1,13 @@
+name: Create ALF File
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    
+    steps:
+    - run: Invoke-WebRequest https://download.unity3d.com/download_unity/497f083a43af/Windows64EditorInstaller/UnitySetup64-2018.4.13f1.exe -o UnitySetup64.exe
+    - run: UnitySetup64.exe -UI=reduced /D=C:\Program Files\Unity
+    - run: dir "C:\Program Files\Unity"
