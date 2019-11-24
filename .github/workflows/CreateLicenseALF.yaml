@@ -15,6 +15,6 @@ jobs:
         sudo chmod +x UnitySetUp
         ls -l
         echo y | ./UnitySetUp --unattended --install-location=/opt/Unity --verbose --download-location=/tmp/unity --components=Unity
-    - run: rm UnitySetUp && rm -rf /tmp/unity && rm -rf /root/.local/share/Trash/*
+    - run: sudo rm UnitySetUp && sudo rm -rf /tmp/unity && sudo rm -rf /root/.local/share/Trash/*
     - run: ls -l /opt
     - run: ls -l /opt/Unity
