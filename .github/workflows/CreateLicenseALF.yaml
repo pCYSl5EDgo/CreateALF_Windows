@@ -19,7 +19,7 @@ jobs:
         --verbose \
         --download-location=/tmp/unity \
         --components=Unity
-    - run: rm UnitySetup && \
+    - run: rm UnitySetUp && \
         rm -rf /tmp/unity && \
         rm -rf /root/.local/share/Trash/*
     - run: ls -l /opt
