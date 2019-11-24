@@ -8,7 +8,8 @@ jobs:
     runs-on: windows-latest
     
     steps:
-    - run: Invoke-WebRequest https://download.unity3d.com/download_unity/497f083a43af/Windows64EditorInstaller/UnitySetup64-2018.4.13f1.exe -o UnitySetup64.exe
+    - run: Invoke-WebRequest https://download.unity3d.com/download_unity/59ddc4c59b4f/Windows64EditorInstaller/UnitySetup64-2018.4.12f1.exe -o UnitySetup64.exe
     - run: dir
-    - run: UnitySetup64.exe -UI=reduced /D="C:\Program Files\Unity\"
+    - run: mldir C:\U
+    - run: Start-Process -FilePath UnitySetup64.exe -ArgumentList "-UI=reduced" "/D=C:\U\" -Wait
     - run: dir "C:\Program Files\Unity"
