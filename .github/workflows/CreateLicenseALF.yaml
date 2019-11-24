@@ -13,3 +13,4 @@ jobs:
         gem install u3d
         u3d install ${{ matrix.unity-version }} --packages Unity
     - run: dir "C:/Program Files/Unity_2018.4.12f1"
+    - run: dir "C:/Program Files/Unity_2018.4.12f1/Editor"
