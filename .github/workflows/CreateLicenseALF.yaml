@@ -16,7 +16,7 @@ jobs:
         
     - run: u3d list
     
-    - run: u3d run -- -quit -batchmode -nographics -logfile -createManualActivationFile
+    - run: Start-Process -FilePath "C:\Program Files\Unity_2018.4.12f1\Editor\Unity.exe" -ArgumentList "-quit -batchmode -nographics -logfile -createManualActivationFile" -Wait
 
     - name: Create Release
       id: create_release
