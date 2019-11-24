@@ -12,4 +12,4 @@ jobs:
     - run: dir
     - run: mldir C:\U
     - run: Start-Process -FilePath UnitySetup64.exe -ArgumentList "-UI=reduced" "/D=C:\U\" -Wait
-    - run: dir "C:\Program Files\Unity"
+    - run: dir "C:\U"
