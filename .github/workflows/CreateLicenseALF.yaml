@@ -17,9 +17,7 @@ jobs:
     #- run: ./UnitySetUp --unattended --install-location=/opt/Unity --verbose --download-location=/tmp/unity --components=Unity
     - run: ls -l
     - run: ls -l /opt/
-    - run: ls -l /opt/Unity/
     - run: ls -l /opt/Unity-${{ matrix.unity-version }}/
-    - run: ls -l /opt/Unity/Editor/
     - run: ls -l /opt/Unity-${{ matrix.unity-version }}/Editor/
-    - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
+    - run: /opt/Unity-${{ matrix.unity-version }}/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
     - run: cat Unity_v${{ matrix.unity-version }}.alf
