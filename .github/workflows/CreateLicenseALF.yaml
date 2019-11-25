@@ -44,5 +44,5 @@ jobs:
       with:
         unity-version: ${{ matrix.unity-version }}
     - run: ls -l /Applications/Unity/
-    - run: /Applications/Unity/Unity.app/Contents/MacOS/Unity -quit -batchMode -createManualActivationFile -logfile
+    - run: /Applications/Unity/Unity.app/Contents/MacOS/Unity -quit -batchMode -createManualActivationFile -logfile || exit 0
     - run: cat Unity_v${{ matrix.unity-version }}.alf
