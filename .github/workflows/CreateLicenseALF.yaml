@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: pCYSl5EDgo/setup-unity@master
       with:
-        unity-version: 2018.4.13f1
+        unity-version: ${{ matrix.unity-version }}
     #- run: wget https://beta.unity3d.com/download/497f083a43af/UnitySetup -O UnitySetUp
     #- run: sudo chmod +x UnitySetUp
     #- run: ./UnitySetUp --unattended --install-location=/opt/Unity --verbose --download-location=/tmp/unity --components=Unity
