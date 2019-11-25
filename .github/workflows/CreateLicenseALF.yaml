@@ -30,8 +30,8 @@ jobs:
         unity-version: ${{ matrix.unity-version }}
     - run: dir 'C:\Program Files\Unity\Editor\'
     - run: mkdir C:\Unity
-    - run: Move-Item -Path 'C:\Program Files\Unity\Editor\' -Destination C:\Unity\
-    - run: C:\Unity\Unity.exe -quit -batchMode -nographics -logfile -createManualActivationFile
+    - run: Move-Item -Path  -Destination C:\Unity\
+    - run: Start-Process -FilePath 'C:\Program Files\Unity\Editor\Unity.exe' -ArgumentList '-quit -batchMode -nographics -logfile -createManualActivationFile'
     - run: cat Unity_v${{ matrix.unity-version }}.alf
     
   build-mac:
