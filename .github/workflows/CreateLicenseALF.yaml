@@ -12,6 +12,7 @@ jobs:
     - uses: pCYSl5EDgo/setup-unity@master
       with:
         unity-version: 2018.4.13f1
+    - run: ls -l
     - run: ls -l /opt/
     - run: ls -l /opt/Unity/
     - run: ls -l /opt/Unity/Editor/
