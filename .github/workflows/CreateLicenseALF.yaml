@@ -31,6 +31,7 @@ jobs:
     - run: dir 'C:\Program Files\Unity\Editor\'
     - run: mkdir C:\Unity
     - run: Start-Process -FilePath 'C:\Program Files\Unity\Editor\Unity.exe' -ArgumentList '-quit -batchMode -nographics -logfile -createManualActivationFile'
+    - run: dir
     - run: cat Unity_v${{ matrix.unity-version }}.alf
     
   build-mac:
