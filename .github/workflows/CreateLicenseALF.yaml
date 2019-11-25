@@ -31,7 +31,7 @@ jobs:
     - run: dir 'C:\Program Files\Unity\Editor\'
     - run: mkdir C:\Unity
     - run: Move-Item -Path 'C:\Program Files\Unity\Editor\' -Destination C:\Unity\
-    - run: C:\Unity\Unity -quit -batchmode -nographics -logfile -createManualActivationFile
+    - run: C:\Unity\Unity.exe -quit -batchmode -nographics -logfile -createManualActivationFile
     - run: cat Unity_v${{ matrix.unity-version }}.alf
     
   build-mac:
@@ -44,4 +44,5 @@ jobs:
       with:
         unity-version: ${{ matrix.unity-version }}
     - run: ls -l /Applications/Unity/
-    
+    - run: /Applications/Unity/Unity.app/Contents/MacOS/Unity -batchmode -createManualActivationFile -logfile
+    - run: cat Unity_v${{ matrix.unity-version }}.alf
