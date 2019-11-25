@@ -9,32 +9,11 @@ jobs:
       matrix:
         unity-version: [2018.4.12f1]
     steps:
+    - uses: pCYSl5EDgo/setup-unity@master
+      with:
+        unity-version: 2018.4.13f1
     - run: |
-        wget "https://beta.unity3d.com/download/59ddc4c59b4f/UnitySetup-2018.4.12f1" -O ./UnitySetUp
-        ls -l
-        sudo chmod +x UnitySetUp
-        ls -l
-        echo y | ./UnitySetUp --unattended --install-location=/opt/Unity --verbose --download-location=/tmp/unity --components=Unity
-    - run: sudo rm UnitySetUp && sudo rm -rf /tmp/unity && sudo rm -rf /root/.local/share/Trash/*
-    - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
-    
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1.0.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ matrix.unity-version }}
-        release_name: Release Unity${{ matrix.unity-version }} - Plain Linux
-        draft: false
-        prerelease: false
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: actions/upload-release-asset@v1.0.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: Unity_v${{ matrix.unity-version }}.alf
-        asset_name: Unity_v${{ matrix.unity-version }}.alf
-        asset_content_type: application/xml
+        ls- l /
+        ls- l /opt/
+        ls- l /opt/Unity/
+        ls- l /opt/Unity/Editor/
