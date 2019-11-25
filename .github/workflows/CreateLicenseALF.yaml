@@ -12,8 +12,8 @@ jobs:
     - uses: pCYSl5EDgo/setup-unity@master
       with:
         unity-version: 2018.4.13f1
-    - run: |
-        ls -l /
-        ls -l /opt/
-        ls -l /opt/Unity/
-        ls -l /opt/Unity/Editor/
+    - run: ls -l /opt/
+    - run: ls -l /opt/Unity/
+    - run: ls -l /opt/Unity/Editor/
+    - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit -
+    - run: cat Unity_v${{ matrix.unity-version }}.alf
