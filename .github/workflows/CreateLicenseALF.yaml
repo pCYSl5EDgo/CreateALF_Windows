@@ -17,9 +17,9 @@ jobs:
     #- run: ./UnitySetUp --unattended --install-location=/opt/Unity --verbose --download-location=/tmp/unity --components=Unity
     - run: ls -l
     - run: ls -l /opt/
-    - run: ls -l /opt/Unity-${{ matrix.unity-version }}/
-    - run: ls -l /opt/Unity-${{ matrix.unity-version }}/Editor/
-    - run: /opt/Unity-${{ matrix.unity-version }}/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
+    - run: ls -l /opt/Unity/
+    - run: ls -l /opt/Unity/Editor/
+    - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
     - run: cat Unity_v${{ matrix.unity-version }}.alf
 
   build-windows:
@@ -31,7 +31,17 @@ jobs:
     - uses: pCYSl5EDgo/setup-unity@master
       with:
         unity-version: ${{ matrix.unity-version }}
-    - run: dir
-    - run: dir 'C:\Program Files\'
-    - run: dir 'C:\Program Files\Unity'
+        install-directory: 'C:\'
+    - run: dir 'C:\Editor\'
+    
+  build-mac:
+    runs-on: macOS-latest
+    strategy:
+      matrix:
+        unity-version: [2018.4.12f1, 2020.1.0a14]
+    steps:
+    - uses: pCYSl5EDgo/setup-unity@master
+      with:
+        unity-version: ${{ matrix.unity-version }}
+    - run: ls -l /Applications/Unity/
     
