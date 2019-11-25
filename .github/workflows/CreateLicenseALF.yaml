@@ -12,9 +12,6 @@ jobs:
     - uses: pCYSl5EDgo/setup-unity@master
       with:
         unity-version: ${{ matrix.unity-version }}
-    #- run: wget https://beta.unity3d.com/download/497f083a43af/UnitySetup -O UnitySetUp
-    #- run: sudo chmod +x UnitySetUp
-    #- run: ./UnitySetUp --unattended --install-location=/opt/Unity --verbose --download-location=/tmp/unity --components=Unity
     - run: ls -l
     - run: ls -l /opt/
     - run: ls -l /opt/Unity/
@@ -31,8 +28,11 @@ jobs:
     - uses: pCYSl5EDgo/setup-unity@master
       with:
         unity-version: ${{ matrix.unity-version }}
-        install-directory: 'C:\'
-    - run: dir 'C:\Editor\'
+    - run: dir 'C:\Program Files\Unity\Editor\'
+    - run: mkdir C:\Unity
+    - run: Move-Item -Path 'C:\Program Files\Unity\Editor\' -Destination C:\Unity\
+    - run: C:\Unity\Unity -quit -batchmode -nographics -logfile -createManualActivationFile
+    - run: cat Unity_v${{ matrix.unity-version }}.alf
     
   build-mac:
     runs-on: macOS-latest
