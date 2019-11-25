@@ -14,7 +14,7 @@ jobs:
       #  unity-version: 2018.4.13f1
     - run: wget https://beta.unity3d.com/download/497f083a43af/UnitySetup -O UnitySetUp
     - run: sudo chmod +x UnitySetUp
-    - run: echo y | sudo UnitySetUp --unattended --install-location=/opt/Unity --verbose --download-location=/tmp/unity --components=Unity
+    - run: sudo UnitySetUp --unattended --install-location=/opt/Unity --verbose --download-location=/tmp/unity --components=Unity
     - run: ls -l
     - run: ls -l /opt/
     - run: ls -l /opt/Unity/
