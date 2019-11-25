@@ -13,7 +13,7 @@ jobs:
       with:
         unity-version: 2018.4.13f1
     - run: |
-        ls- l /
-        ls- l /opt/
-        ls- l /opt/Unity/
-        ls- l /opt/Unity/Editor/
+        ls -l /
+        ls -l /opt/
+        ls -l /opt/Unity/
+        ls -l /opt/Unity/Editor/
