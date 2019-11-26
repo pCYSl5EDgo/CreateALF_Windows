@@ -13,7 +13,7 @@ jobs:
       with:
         ruby-version: '2.6.3'
     - run: gem install u3d -v 1.2.1
-    - run: u3d install ${{ matrix.unity-version }} --all
+    - run: sudo /opt/hostedtoolcache/Ruby/2.6.3/x64/bin/u3d install ${{ matrix.unity-version }} --all
   build-windows-all:
     runs-on: [windows-latest]
     strategy:
