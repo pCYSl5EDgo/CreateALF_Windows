@@ -13,6 +13,7 @@ jobs:
       uses: pCYSl5EDgo/setup-unity@master
       with:
         unity-version: ${{ matrix.unity-version }}
+    - run: dir
     - run: dir "C:\Program Files\Unity\"
     - run: dir 'C:\Program Files\Unity\Editor\'
     - run: echo ${{ steps.z.outputs.id }}
