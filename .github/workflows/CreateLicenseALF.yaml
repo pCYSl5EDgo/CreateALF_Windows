@@ -9,7 +9,7 @@ jobs:
     - uses: actions/setup-ruby@v1
       with:
         ruby-version: 2
-    - run: sudo gem install u3d
+    - run: gem install u3d
     - run: gem environment
     - run: ls -l /vagrant/ || exit 0
     - run: ls -l /global/ || exit 0
