@@ -4,73 +4,75 @@ on: [push]
 
 jobs:
   build-windows-test0:
-    runs-on: windows-latest
+    runs-on: [ubuntu-latest]
     steps:
     - run: gem install u3d
-    - run: u3d install 2018.4.13f1 --packages Unity
-    - run: dir
-    - run: Start-Process -FilePath "C:\Program Files\Unity_2018.4.13f1\Editor\Unity.exe" -ArgumentList '-quit -batchMode -nographics -logfile -createManualActivationFile' -Wait
-    - run: cat Unity_v2018.4.13f1.alf
+    - run: sudo apt-get update
+    - run: sudo u3d dependencies
+    - run: u3d install 2017.4.13f1 --all
+#     - run: ls -l
+#     - run: Start-Process -FilePath "C:\Program Files\Unity_2018.4.13f1\Editor\Unity.exe" -ArgumentList '-quit -batchMode -nographics -logfile -createManualActivationFile' -Wait
+#     - run: cat Unity_v2018.4.13f1.alf
 
-  build-windows-test1:
-    runs-on: windows-latest
-    steps:
-    - shell: cmd
-      run: bitsadmin /TRANSFER bj /download /priority normal https://download.unity3d.com/download_unity/497f083a43af/Windows64EditorInstaller/UnitySetup64.exe %CD%\UnitySetup64.exe
-    - shell: cmd
-      run: |
-        dir
-        UnitySetup64.exe /UI=reduced /S /D=C:\Program Files\Unity_2018.4.13f1
-    - run: dir "C:\Program Files\"
-    - run: |
-        & 'C:\Program Files\Unity_2018.4.13f1\Editor\Unity.exe' -quit -batchMode -nographics -logfile -createManualActivationFile
-    - run: cat Unity_v2018.4.13f1.alf
+#   build-windows-test1:
+#     runs-on: windows-latest
+#     steps:
+#     - shell: cmd
+#       run: bitsadmin /TRANSFER bj /download /priority normal https://download.unity3d.com/download_unity/497f083a43af/Windows64EditorInstaller/UnitySetup64.exe %CD%\UnitySetup64.exe
+#     - shell: cmd
+#       run: |
+#         dir
+#         UnitySetup64.exe /UI=reduced /S /D=C:\Program Files\Unity_2018.4.13f1
+#     - run: dir "C:\Program Files\"
+#     - run: |
+#         & 'C:\Program Files\Unity_2018.4.13f1\Editor\Unity.exe' -quit -batchMode -nographics -logfile -createManualActivationFile
+#     - run: cat Unity_v2018.4.13f1.alf
   
-  build-windows:
-    runs-on: windows-latest
-    strategy:
-      matrix:
-        unity-version: [2018.4.12f1, 2020.1.0a14]
-    steps:
-    - id: z
-      uses: pCYSl5EDgo/setup-unity@master
-      with:
-        unity-version: ${{ matrix.unity-version }}
-    - run: dir "C:\Program Files\Unity\"
-    - run: dir 'C:\Program Files\Unity\Editor\'
-    - run: echo ${{ steps.z.outputs.id }}
-    - run: |
-        & "C:\Program Files\Unity\Editor\Unity.exe" -quit -batchMode -nographics -logfile -createManualActivationFile
-    - run: dir
-    - run: cat Unity_v${{ matrix.unity-version }}.alf
+#   build-windows:
+#     runs-on: windows-latest
+#     strategy:
+#       matrix:
+#         unity-version: [2018.4.12f1, 2020.1.0a14]
+#     steps:
+#     - id: z
+#       uses: pCYSl5EDgo/setup-unity@master
+#       with:
+#         unity-version: ${{ matrix.unity-version }}
+#     - run: dir "C:\Program Files\Unity\"
+#     - run: dir 'C:\Program Files\Unity\Editor\'
+#     - run: echo ${{ steps.z.outputs.id }}
+#     - run: |
+#         & "C:\Program Files\Unity\Editor\Unity.exe" -quit -batchMode -nographics -logfile -createManualActivationFile
+#     - run: dir
+#     - run: cat Unity_v${{ matrix.unity-version }}.alf
     
-  build-mac:
-    runs-on: macOS-latest
-    strategy:
-      matrix:
-        unity-version: [2018.4.12f1, 2020.1.0a14]
-    steps:
-    - uses: pCYSl5EDgo/setup-unity@master
-      with:
-        unity-version: ${{ matrix.unity-version }}
-    - run: ls -l /Applications/Unity/
-    - run: /Applications/Unity/Unity.app/Contents/MacOS/Unity -quit -batchMode -createManualActivationFile -logfile || exit 0
-    - run: cat Unity_v${{ matrix.unity-version }}.alf
+#   build-mac:
+#     runs-on: macOS-latest
+#     strategy:
+#       matrix:
+#         unity-version: [2018.4.12f1, 2020.1.0a14]
+#     steps:
+#     - uses: pCYSl5EDgo/setup-unity@master
+#       with:
+#         unity-version: ${{ matrix.unity-version }}
+#     - run: ls -l /Applications/Unity/
+#     - run: /Applications/Unity/Unity.app/Contents/MacOS/Unity -quit -batchMode -createManualActivationFile -logfile || exit 0
+#     - run: cat Unity_v${{ matrix.unity-version }}.alf
 
-  build-ubuntu:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        unity-version: [2018.4.12f1, 2020.1.0a14]
-    steps:
-    - id: z
-      uses: pCYSl5EDgo/setup-unity@master
-      with:
-        unity-version: ${{ matrix.unity-version }}
-    - run: ls -l
-    - run: ls -l /opt/
-    - run: ls -l /opt/Unity/
-    - run: ls -l /opt/Unity/Editor/
-    - run: echo ${{ steps.z.outputs.id }}
-    - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
-    - run: cat Unity_v${{ matrix.unity-version }}.alf
+#   build-ubuntu:
+#     runs-on: ubuntu-latest
+#     strategy:
+#       matrix:
+#         unity-version: [2018.4.12f1, 2020.1.0a14]
+#     steps:
+#     - id: z
+#       uses: pCYSl5EDgo/setup-unity@master
+#       with:
+#         unity-version: ${{ matrix.unity-version }}
+#     - run: ls -l
+#     - run: ls -l /opt/
+#     - run: ls -l /opt/Unity/
+#     - run: ls -l /opt/Unity/Editor/
+#     - run: echo ${{ steps.z.outputs.id }}
+#     - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
+#     - run: cat Unity_v${{ matrix.unity-version }}.alf
