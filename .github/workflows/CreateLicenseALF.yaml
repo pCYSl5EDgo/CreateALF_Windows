@@ -7,7 +7,7 @@ jobs:
     runs-on: windows-latest
     steps:
     - run: gem install u3d
-    - run: u3d install 2018.4.13f1 --all
+    - run: u3d install 2018.4.13f1 --packages Unity
     - run: dir
     - run: Start-Process -FilePath "C:\Program Files\Unity_2018.4.13f1\Editor\Unity.exe" -ArgumentList '-quit -batchMode -nographics -logfile -createManualActivationFile' -Wait
     - run: dir
