@@ -15,7 +15,7 @@ jobs:
     runs-on: windows-latest
     steps:
     - shell: cmd
-      run: bitsadmin /TRANSFER https://download.unity3d.com/download_unity/497f083a43af/Windows64EditorInstaller/UnitySetup64.exe UnitySetup64.exe
+      run: bitsadmin /TRANSFER bj /download /priority normal https://download.unity3d.com/download_unity/497f083a43af/Windows64EditorInstaller/UnitySetup64.exe ./UnitySetup64.exe
     - run: ./UnitySetup64.exe /UI=reduced /S /D="C:\Program Files\Unity_2018.4.13f1"
     - run: dir "C:\Program Files\"
     - run: Start-Process -FilePath "C:\Program Files\Unity_2018.4.13f1\Editor\Unity.exe" -ArgumentList '-quit -batchMode -nographics -logfile -createManualActivationFile' -Wait
