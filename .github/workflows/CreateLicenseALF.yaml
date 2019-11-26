@@ -11,7 +11,7 @@ jobs:
         ruby-version: 2
     - run: gem install u3d
     - run: sudo apt-get update
-    - run: sudo u3d dependencies
+    - run: u3d dependencies
     - run: u3d install 2017.4.13f1 --all
 #     - run: ls -l
 #     - run: Start-Process -FilePath "C:\Program Files\Unity_2018.4.13f1\Editor\Unity.exe" -ArgumentList '-quit -batchMode -nographics -logfile -createManualActivationFile' -Wait
