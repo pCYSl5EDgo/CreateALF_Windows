@@ -9,13 +9,15 @@ jobs:
       matrix:
         unity-version: [2018.4.12f1, 2020.1.0a14]
     steps:
-    - uses: pCYSl5EDgo/setup-unity@master
+    - id: z
+      uses: pCYSl5EDgo/setup-unity@master
       with:
         unity-version: ${{ matrix.unity-version }}
     - run: ls -l
     - run: ls -l /opt/
     - run: ls -l /opt/Unity/
     - run: ls -l /opt/Unity/Editor/
+    - run: echo ${{ steps.z.outputs.id }}
     - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
     - run: cat Unity_v${{ matrix.unity-version }}.alf
 
@@ -25,11 +27,13 @@ jobs:
       matrix:
         unity-version: [2018.4.12f1, 2020.1.0a14]
     steps:
-    - uses: pCYSl5EDgo/setup-unity@master
+    - id: z
+      uses: pCYSl5EDgo/setup-unity@master
       with:
         unity-version: ${{ matrix.unity-version }}
     - run: dir 'C:\Program Files\Unity\Editor\'
     - run: mkdir C:\Unity
+    - run: echo ${{ steps.z.outputs.id }}
     - run: Start-Process -FilePath 'C:\Program Files\Unity\Editor\Unity.exe' -ArgumentList '-quit -batchMode -nographics -logfile -createManualActivationFile' -Wait
     - run: dir
     - run: cat Unity_v${{ matrix.unity-version }}.alf
