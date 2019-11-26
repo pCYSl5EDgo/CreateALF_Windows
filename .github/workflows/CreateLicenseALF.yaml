@@ -32,10 +32,9 @@ jobs:
       with:
         unity-version: ${{ matrix.unity-version }}
     - run: dir 'C:\Program Files\Unity\Editor\'
-    - run: mkdir C:\Unity
     - run: echo ${{ steps.z.outputs.id }}
+    - run: dir 'C:\Program Files\'
     - run: Start-Process -FilePath 'C:\Program Files\Unity\Editor\Unity.exe' -ArgumentList '-quit -batchMode -nographics -logfile -createManualActivationFile' -Wait
-    - run: dir
     - run: cat Unity_v${{ matrix.unity-version }}.alf
     
   build-mac:
