@@ -3,15 +3,20 @@ name: Create ALF File
 on: [push]
 
 jobs:
-  build-windows-test:
+  build-windows-test0:
     runs-on: windows-latest
     steps:
     - run: gem install u3d
     - run: u3d install 2018.4.13f1 --all
-    #- run: Invoke-WebRequest -Uri https://download.unity3d.com/download_unity/497f083a43af/Windows64EditorInstaller/UnitySetup64.exe -OutFile UnitySetup64.exe
     - run: dir
-    #- run: ./UnitySetup64.exe /S /D="C:\Program Files\Unity"
     - run: Start-Process -FilePath "C:\Program Files\Unity_2018.4.13f1\Editor\Unity.exe" -ArgumentList '-quit -batchMode -nographics -logfile -createManualActivationFile' -Wait
+    - run: dir
+  build-windows-test1:
+    runs-on: windows-latest
+    steps:
+    - run: Invoke-WebRequest -Uri https://download.unity3d.com/download_unity/497f083a43af/Windows64EditorInstaller/UnitySetup64.exe -OutFile UnitySetup64.exe
+    - run: ./UnitySetup64.exe /S /D="C:\Program Files\Unity"
+    - run: Start-Process -FilePath "C:\Program Files\Unity\Editor\Unity.exe" -ArgumentList '-quit -batchMode -nographics -logfile -createManualActivationFile' -Wait
     - run: dir
   build-windows:
     runs-on: windows-latest
