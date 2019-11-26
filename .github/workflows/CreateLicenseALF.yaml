@@ -56,29 +56,29 @@ jobs:
 #         & 'C:\Program Files\Unity_2018.4.13f1\Editor\Unity.exe' -quit -batchMode -nographics -logfile -createManualActivationFile
 #     - run: cat Unity_v2018.4.13f1.alf
   
-#   build-windows:
-#     runs-on: windows-latest
-#     strategy:
-#       matrix:
-#         unity-version: [2018.4.12f1, 2020.1.0a14]
-#     steps:
-#     - id: z
-#       uses: pCYSl5EDgo/setup-unity@master
-#       with:
-#         unity-version: ${{ matrix.unity-version }}
-#     - run: dir "C:\Program Files\Unity\"
-#     - run: dir 'C:\Program Files\Unity\Editor\'
-#     - run: echo ${{ steps.z.outputs.id }}
-#     - run: |
-#         & "C:\Program Files\Unity\Editor\Unity.exe" -quit -batchMode -nographics -logfile -createManualActivationFile
-#     - run: dir
-#     - run: cat Unity_v${{ matrix.unity-version }}.alf
+  build-windows:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        unity-version: [2018.4.9f1, 2020.1.0a14]
+    steps:
+    - id: z
+      uses: pCYSl5EDgo/setup-unity@master
+      with:
+        unity-version: ${{ matrix.unity-version }}
+    - run: dir "C:\Program Files\Unity\"
+    - run: dir 'C:\Program Files\Unity\Editor\'
+    - run: echo ${{ steps.z.outputs.id }}
+    - run: |
+        & "C:\Program Files\Unity\Editor\Unity.exe" -quit -batchMode -nographics -logfile -createManualActivationFile
+    - run: dir
+    - run: cat Unity_v${{ matrix.unity-version }}.alf
     
   build-mac:
     runs-on: macOS-latest
     strategy:
       matrix:
-        unity-version: [2018.4.12f1, 2020.1.0a14]
+        unity-version: [2018.4.9f1, 2020.1.0a14]
     steps:
     - uses: pCYSl5EDgo/setup-unity@master
       with:
@@ -91,20 +91,20 @@ jobs:
     - run: /Applications/Unity/Unity.app/Contents/MacOS/Unity -quit -batchMode -createManualActivationFile -logfile || exit 0
     - run: cat Unity_v${{ matrix.unity-version }}.alf
 
-#   build-ubuntu:
-#     runs-on: ubuntu-latest
-#     strategy:
-#       matrix:
-#         unity-version: [2018.4.12f1, 2020.1.0a14]
-#     steps:
-#     - id: z
-#       uses: pCYSl5EDgo/setup-unity@master
-#       with:
-#         unity-version: ${{ matrix.unity-version }}
-#     - run: ls -l
-#     - run: ls -l /opt/
-#     - run: ls -l /opt/Unity/
-#     - run: ls -l /opt/Unity/Editor/
-#     - run: echo ${{ steps.z.outputs.id }}
-#     - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
-#     - run: cat Unity_v${{ matrix.unity-version }}.alf
+  build-ubuntu:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        unity-version: [2018.4.9f1, 2020.1.0a14]
+    steps:
+    - id: z
+      uses: pCYSl5EDgo/setup-unity@master
+      with:
+        unity-version: ${{ matrix.unity-version }}
+    - run: ls -l
+    - run: ls -l /opt/
+    - run: ls -l /opt/Unity/
+    - run: ls -l /opt/Unity/Editor/
+    - run: echo ${{ steps.z.outputs.id }}
+    - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
+    - run: cat Unity_v${{ matrix.unity-version }}.alf
