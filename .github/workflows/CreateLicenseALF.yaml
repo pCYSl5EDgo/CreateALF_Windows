@@ -31,11 +31,10 @@ jobs:
       uses: pCYSl5EDgo/setup-unity@master
       with:
         unity-version: ${{ matrix.unity-version }}
-    - run: dir 'C:\Program Files\Unity\Editor\'
+    - run: dir 'C:\Unity\Editor\'
     - run: echo ${{ steps.z.outputs.id }}
-    - run: dir 'C:\Program Files\'
-    - run: Start-Process -FilePath 'C:\Program Files\Unity\Editor\Unity.exe' -ArgumentList '-quit -batchMode -nographics -logfile -createManualActivationFile' -Wait
-    - run: cat Unity_v${{ matrix.unity-version }}.alf
+    - run: C:\Unity\Editor\Unity.exe -quit -batchMode -nographics -logfile -createManualActivationFile
+    - run: dir
     
   build-mac:
     runs-on: macOS-latest
