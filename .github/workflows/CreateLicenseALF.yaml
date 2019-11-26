@@ -3,6 +3,35 @@ name: Create ALF File
 on: [push]
 
 jobs:
+  build-windows:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        unity-version: [2018.4.12f1, 2020.1.0a14]
+    steps:
+    - id: z
+      uses: pCYSl5EDgo/setup-unity@master
+      with:
+        unity-version: ${{ matrix.unity-version }}
+    - run: dir "C:\Program Files\Unity\"
+    - run: dir 'C:\Program Files\Unity\Editor\'
+    - run: echo ${{ steps.z.outputs.id }}
+    - run: Start-Process -FilePath "C:\Program Files\Unity\Editor\Unity.exe" -ArgumentList '-quit -batchMode -nographics -logfile -createManualActivationFile' -Wait
+    - run: dir
+    
+  build-mac:
+    runs-on: macOS-latest
+    strategy:
+      matrix:
+        unity-version: [2018.4.12f1, 2020.1.0a14]
+    steps:
+    - uses: pCYSl5EDgo/setup-unity@master
+      with:
+        unity-version: ${{ matrix.unity-version }}
+    - run: ls -l /Applications/Unity/
+    - run: /Applications/Unity/Unity.app/Contents/MacOS/Unity -quit -batchMode -createManualActivationFile -logfile || exit 0
+    - run: cat Unity_v${{ matrix.unity-version }}.alf
+
   build-ubuntu:
     runs-on: ubuntu-latest
     strategy:
@@ -19,33 +48,4 @@ jobs:
     - run: ls -l /opt/Unity/Editor/
     - run: echo ${{ steps.z.outputs.id }}
     - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
-    - run: cat Unity_v${{ matrix.unity-version }}.alf
-
-  build-windows:
-    runs-on: windows-latest
-    strategy:
-      matrix:
-        unity-version: [2018.4.12f1, 2020.1.0a14]
-    steps:
-    - id: z
-      uses: pCYSl5EDgo/setup-unity@master
-      with:
-        unity-version: ${{ matrix.unity-version }}
-    - run: dir "C:\Program Files\Unity\"
-    - run: dir 'C:\Program Files\Unity\Editor\'
-    - run: echo ${{ steps.z.outputs.id }}
-    - run: Start-Process "C:\Program Files\Unity\Editor\Unity.exe" -ArgList '-quit -batchMode -nographics -logfile -createManualActivationFile' -Wait
-    - run: dir
-    
-  build-mac:
-    runs-on: macOS-latest
-    strategy:
-      matrix:
-        unity-version: [2018.4.12f1, 2020.1.0a14]
-    steps:
-    - uses: pCYSl5EDgo/setup-unity@master
-      with:
-        unity-version: ${{ matrix.unity-version }}
-    - run: ls -l /Applications/Unity/
-    - run: /Applications/Unity/Unity.app/Contents/MacOS/Unity -quit -batchMode -createManualActivationFile -logfile || exit 0
     - run: cat Unity_v${{ matrix.unity-version }}.alf
