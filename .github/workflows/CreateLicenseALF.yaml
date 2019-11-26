@@ -3,44 +3,44 @@ name: Create ALF File
 on: [push]
 
 jobs:
-  build-macos-all:
-    runs-on: [macOS-latest]
-    strategy:
-      matrix:
-        unity-version: [2018.4.12f1, 2019.2.13f1, 2019.3.0b12, 2020.1.0a14]
-    steps:
-    - uses: actions/setup-ruby@v1
-      with:
-        ruby-version: '2.6.3'
-    - run: gem install u3d -v 1.2.1
-    - run: sudo /Users/runner/hostedtoolcache/Ruby/2.6.3/x64/bin/u3d install ${{ matrix.unity-version }} --all
-  build-windows-all:
-    runs-on: [windows-latest]
-    strategy:
-      matrix:
-        unity-version: [2018.4.12f1, 2019.2.13f1, 2019.3.0b12, 2020.1.0a14]
-    steps:
-    - uses: actions/setup-ruby@v1
-      with:
-        ruby-version: '2.6.3'
-    - run: gem install u3d -v 1.2.1
-    - run: u3d install ${{ matrix.unity-version }} --all
-  build-linux-all:
-    runs-on: [ubuntu-latest]
-    strategy:
-      matrix:
-        unity-version: [2019.1.0f2, 2018.3.0f2, 2018.1.0b8]
-    steps:
-    - uses: actions/setup-ruby@v1
-      with:
-        ruby-version: '2.6.3'
-    - run: gem install u3d -v 1.2.1
-    - run: sudo apt-get update
-    - run: sudo apt-get -y install gconf-service lib32gcc1 lib32stdc++6 libasound2 libc6 libc6-i386 libcairo2 libcap2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libfreetype6 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libgl1-mesa-glx libglib2.0-0 libglu1-mesa libgtk2.0-0 libnspr4 libnss3 libpango1.0-0 libstdc++6 libx11-6 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxtst6 zlib1g debconf npm libpq5
-    - run: sudo /opt/hostedtoolcache/Ruby/2.6.3/x64/bin/u3d install ${{ matrix.unity-version }} --all
-    - run: ls -l
-    - run: Start-Process -FilePath "C:\Program Files\Unity_2018.4.13f1\Editor\Unity.exe" -ArgumentList '-quit -batchMode -nographics -logfile -createManualActivationFile' -Wait
-    - run: cat Unity_v2018.4.13f1.alf
+#   build-macos-all:
+#     runs-on: [macOS-latest]
+#     strategy:
+#       matrix:
+#         unity-version: [2018.4.12f1, 2019.2.13f1, 2019.3.0b12, 2020.1.0a14]
+#     steps:
+#     - uses: actions/setup-ruby@v1
+#       with:
+#         ruby-version: '2.6.3'
+#     - run: gem install u3d -v 1.2.1
+#     - run: sudo /Users/runner/hostedtoolcache/Ruby/2.6.3/x64/bin/u3d install ${{ matrix.unity-version }} --all
+#   build-windows-all:
+#     runs-on: [windows-latest]
+#     strategy:
+#       matrix:
+#         unity-version: [2018.4.12f1, 2019.2.13f1, 2019.3.0b12, 2020.1.0a14]
+#     steps:
+#     - uses: actions/setup-ruby@v1
+#       with:
+#         ruby-version: '2.6.3'
+#     - run: gem install u3d -v 1.2.1
+#     - run: u3d install ${{ matrix.unity-version }} --all
+#   build-linux-all:
+#     runs-on: [ubuntu-latest]
+#     strategy:
+#       matrix:
+#         unity-version: [2019.1.0f2, 2018.3.0f2, 2018.1.0b8]
+#     steps:
+#     - uses: actions/setup-ruby@v1
+#       with:
+#         ruby-version: '2.6.3'
+#     - run: gem install u3d -v 1.2.1
+#     - run: sudo apt-get update
+#     - run: sudo apt-get -y install gconf-service lib32gcc1 lib32stdc++6 libasound2 libc6 libc6-i386 libcairo2 libcap2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libfreetype6 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libgl1-mesa-glx libglib2.0-0 libglu1-mesa libgtk2.0-0 libnspr4 libnss3 libpango1.0-0 libstdc++6 libx11-6 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxtst6 zlib1g debconf npm libpq5
+#     - run: sudo /opt/hostedtoolcache/Ruby/2.6.3/x64/bin/u3d install ${{ matrix.unity-version }} --all
+#     - run: ls -l
+#     - run: Start-Process -FilePath "C:\Program Files\Unity_2018.4.13f1\Editor\Unity.exe" -ArgumentList '-quit -batchMode -nographics -logfile -createManualActivationFile' -Wait
+#     - run: cat Unity_v2018.4.13f1.alf
 
 #   build-windows-test1:
 #     runs-on: windows-latest
@@ -74,18 +74,22 @@ jobs:
 #     - run: dir
 #     - run: cat Unity_v${{ matrix.unity-version }}.alf
     
-#   build-mac:
-#     runs-on: macOS-latest
-#     strategy:
-#       matrix:
-#         unity-version: [2018.4.12f1, 2020.1.0a14]
-#     steps:
-#     - uses: pCYSl5EDgo/setup-unity@master
-#       with:
-#         unity-version: ${{ matrix.unity-version }}
-#     - run: ls -l /Applications/Unity/
-#     - run: /Applications/Unity/Unity.app/Contents/MacOS/Unity -quit -batchMode -createManualActivationFile -logfile || exit 0
-#     - run: cat Unity_v${{ matrix.unity-version }}.alf
+  build-mac:
+    runs-on: macOS-latest
+    strategy:
+      matrix:
+        unity-version: [2018.4.12f1, 2020.1.0a14]
+    steps:
+    - uses: pCYSl5EDgo/setup-unity@master
+      with:
+        unity-version: ${{ matrix.unity-version }}
+    - run: |
+        ls -l /Applications/Unity/
+        ls -l /Applications/Unity/Unity.app/
+        ls -l /Applications/Unity/Unity.app/Contents/
+        ls -l /Applications/Unity/Unity.app/Contents/MacOS/
+    - run: /Applications/Unity/Unity.app/Contents/MacOS/Unity -quit -batchMode -createManualActivationFile -logfile || exit 0
+    - run: cat Unity_v${{ matrix.unity-version }}.alf
 
 #   build-ubuntu:
 #     runs-on: ubuntu-latest
