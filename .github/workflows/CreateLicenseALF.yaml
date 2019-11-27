@@ -107,7 +107,7 @@ jobs:
     - run: echo ${{ steps.z.outputs.id }}
     - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
     - run: cat Unity_v${{ matrix.unity-version }}.alf
-    - run: echo -n $ULF > Unity.ulf
+    - run: echo -n $ULF aaa > Unity.ulf
       env:
         ULF: ${{ secrets.ulf_linux }}
     - run: /opt/Unity/Editor/Unity -nographics -quit -batchmode -manualLicenseFile Unity.ulf -logfile || exit 0
