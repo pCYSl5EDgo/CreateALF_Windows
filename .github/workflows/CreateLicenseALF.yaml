@@ -126,3 +126,11 @@ jobs:
     steps:
     - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
     - run: cat Unity_v${{ matrix.unity-version }}.alf
+    - run: |
+        mkdir a
+        mv Unity_v${{ matrix.unity-version }}.alf a/
+    - uses: actions/upload-artifact@master
+      with:
+        path: a
+        name: ${{ matrix.unity-version }}
+  
