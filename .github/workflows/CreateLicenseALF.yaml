@@ -111,6 +111,6 @@ jobs:
 #       env:
 #         ULF: ${{ secrets.ulf_linux }}
 #     - run: /opt/Unity/Editor/Unity -nographics -quit -batchmode -manualLicenseFile Unity.ulf -logfile || exit 0
-    - run: /opt/Unity/Editor/Unity -nographics -quit -batchmode -password $PWD -username pcysl5edgo@yahoo.co.jp -logfile || exit 0
+    - run: /opt/Unity/Editor/Unity -nographics -quit -batchmode -password "$PWD" -username pcysl5edgo@yahoo.co.jp -logfile || exit 0
       env:
         PWD: ${{ secrets.pwd }}
