@@ -88,25 +88,19 @@ jobs:
 #     - run: /Applications/Unity/Unity.app/Contents/MacOS/Unity -quit -batchMode -createManualActivationFile -logfile || exit 0
 #     - run: cat Unity_v${{ matrix.unity-version }}.alf
 
-#   build-ubuntu:
-#     runs-on: ubuntu-latest
-#     strategy:
-#       matrix:
-#         unity-version: 
-#         - 2018.4.9f1
-#         - 2020.1.0a14
-#     steps:
-#     - id: z
-#       uses: pCYSl5EDgo/setup-unity@master
-#       with:
-#         unity-version: ${{ matrix.unity-version }}
-#     - run: ls -l
-#     - run: ls -l /opt/
-#     - run: ls -l /opt/Unity/
-#     - run: ls -l /opt/Unity/Editor/
-#     - run: echo ${{ steps.z.outputs.id }}
-#     - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
-#     - run: cat Unity_v${{ matrix.unity-version }}.alf
+  build-ubuntu:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        unity-version: 
+        - 2018.4.9f1
+    steps:
+    - id: z
+      uses: pCYSl5EDgo/setup-unity@master
+      with:
+        unity-version: ${{ matrix.unity-version }}
+    - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
+    - run: cat Unity_v${{ matrix.unity-version }}.alf
 #     - run: echo -n $ULF aaa > Unity.ulf
 #       env:
 #         ULF: ${{ secrets.ulf_linux }}
@@ -114,23 +108,23 @@ jobs:
 #     - run: /opt/Unity/Editor/Unity -nographics -quit -batchmode -password "$PWD" -username pcysl5edgo@yahoo.co.jp -logfile || exit 0
 #       env:
 #         PWD: ${{ secrets.pwd }}
-  build-gableroux:
-    runs-on: [ubuntu-latest]
-    strategy:
-      matrix:
-        unity-version: 
-        - 2018.4.9f1
-        - 2018.4.10f1
-        - 2018.4.12f1
-    container: docker://gableroux/unity3d:${{ matrix.unity-version }}
-    steps:
-    - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
-    - run: cat Unity_v${{ matrix.unity-version }}.alf
-    - run: |
-        mkdir a
-        mv Unity_v${{ matrix.unity-version }}.alf a/
-    - uses: actions/upload-artifact@master
-      with:
-        path: a
-        name: ${{ matrix.unity-version }}
+#   build-gableroux:
+#     runs-on: [ubuntu-latest]
+#     strategy:
+#       matrix:
+#         unity-version: 
+#         - 2018.4.9f1
+#         - 2018.4.10f1
+#         - 2018.4.12f1
+#     container: docker://gableroux/unity3d:${{ matrix.unity-version }}
+#     steps:
+#     - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
+#     - run: cat Unity_v${{ matrix.unity-version }}.alf
+#     - run: |
+#         mkdir a
+#         mv Unity_v${{ matrix.unity-version }}.alf a/
+#     - uses: actions/upload-artifact@master
+#       with:
+#         path: a
+#         name: ${{ matrix.unity-version }}
   
