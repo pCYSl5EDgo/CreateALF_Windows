@@ -121,9 +121,7 @@ jobs:
         unity-version: 
         - 2018.4.9f1
         - 2018.4.10f1
-        - 2018.4.11f1
         - 2018.4.12f1
-        - 2018.4.13f1
     container: docker://gableroux/unity3d:${{ matrix.unity-version }}
     steps:
     - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
