@@ -100,7 +100,13 @@ jobs:
       with:
         unity-version: ${{ matrix.unity-version }}
     - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
-    - run: cat Unity_v${{ matrix.unity-version }}.alf
+    - run: |
+        mkdir artifact
+        mv Unity_v${{ matrix.unity-version }}.alf artifact/
+    - uses: actions/upload-artifact@master
+      with:
+        name: my2018.4.9f1
+        path: artifact
 #     - run: echo -n $ULF aaa > Unity.ulf
 #       env:
 #         ULF: ${{ secrets.ulf_linux }}
