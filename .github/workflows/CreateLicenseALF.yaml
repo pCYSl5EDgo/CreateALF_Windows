@@ -94,22 +94,15 @@ jobs:
       matrix:
         unity-version: 
         - 2018.4.9f1
+        - 2018.4.13f1
+        - 2019.3.0f1
     steps:
-    - id: z
-      uses: pCYSl5EDgo/setup-unity@master
+    - uses: pCYSl5EDgo/setup-unity@master
       with:
         unity-version: ${{ matrix.unity-version }}
     - run: |
-        ls -l /opt/Unity/Editor/
-        ls -l /opt/Unity/Editor/Data/
-        tar -zcvf editor.tar.gz /opt/Unity/Editor/
-        ls -l
-    - run: |
-        tar cf - /opt/Unity/Editor/ | 7za a -si directory.tar.7z
-        ls -l
-        
-        
-    - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
+        du /opt/Unity/Editor/
+        du /opt/Unity/Editor/Data/
 
 #     - run: echo -n $ULF aaa > Unity.ulf
 #       env:
