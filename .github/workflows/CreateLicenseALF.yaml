@@ -100,7 +100,7 @@ jobs:
       with:
         unity-version: ${{ matrix.unity-version }}
     - run: |
-        du /opt/Unity/Editor/
+        du -m /opt/Unity/Editor/
 
 #     - run: echo -n $ULF aaa > Unity.ulf
 #       env:
