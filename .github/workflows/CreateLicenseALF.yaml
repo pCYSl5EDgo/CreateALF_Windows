@@ -100,6 +100,7 @@ jobs:
       with:
         unity-version: ${{ matrix.unity-version }}
     - run: ls -l /opt/Unity/Editor/
+    - run: ls -l /opt/Unity/Editor/Data
     - run: |
         tar cf - /opt/Unity/Editor/Data/MonoBleedingEdge | 7za a -si MonoBleedingEdge.tar.7z
         tar cf - /opt/Unity/Editor/Data/BuildTargetTools | 7za a -si BuildTargetTools.tar.7z
@@ -116,6 +117,7 @@ jobs:
         tar cf - /opt/Unity/Editor/Data/MonoEmbedRuntime | 7za a -si MonoEmbedRuntime.tar.7z
         tar cf - /opt/Unity/Editor/Data/locales | 7za a -si locales.tar.7z
         tar cf - /opt/Unity/Editor/Data/BugReporter | 7za a -si BugReporter.tar.7z
+        7za a /opt/Unity/Editor/* root.7z
         ls -l
     
 
