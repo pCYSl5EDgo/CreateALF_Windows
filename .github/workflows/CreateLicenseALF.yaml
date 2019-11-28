@@ -99,14 +99,18 @@ jobs:
       uses: pCYSl5EDgo/setup-unity@master
       with:
         unity-version: ${{ matrix.unity-version }}
-    - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
     - run: |
-        mkdir artifact
-        mv Unity_v${{ matrix.unity-version }}.alf artifact/
-    - uses: actions/upload-artifact@master
-      with:
-        name: my2018.4.9f1
-        path: artifact
+        ls -l /opt/Unity/Editor/
+        ls -l /opt/Unity/Editor/Data/
+        tar -zcvf editor.tar.gz /opt/Unity/Editor/
+        ls -l
+    - run: |
+        tar cf - /opt/Unity/Editor/ | 7za a -si directory.tar.7z
+        ls -l
+        
+        
+    - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
+
 #     - run: echo -n $ULF aaa > Unity.ulf
 #       env:
 #         ULF: ${{ secrets.ulf_linux }}
