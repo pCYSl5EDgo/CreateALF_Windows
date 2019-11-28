@@ -116,7 +116,6 @@ jobs:
         tar cf - /opt/Unity/Editor/Data/MonoEmbedRuntime | 7za a -si MonoEmbedRuntime.tar.7z
         tar cf - /opt/Unity/Editor/Data/locales | 7za a -si locales.tar.7z
         tar cf - /opt/Unity/Editor/Data/BugReporter | 7za a -si BugReporter.tar.7z
-        tar cf - /opt/Unity/Editor/Data/ | 7za a -si .tar.7z
         ls -l
     
 
