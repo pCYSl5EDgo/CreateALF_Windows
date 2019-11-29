@@ -103,7 +103,10 @@ jobs:
     - run: tar cv - /opt/Unity/ | 7z a -si -v400m unity.tar.7z
     - run: ls -l
     - run: rm -rf /opt/Unity/
+    - run: ls -l /opt/
     - run: cat unity.tar.7z* | 7z x -si -so | tar xf - -C /opt/Unity/
+    - run: ls -l /opt/
+    - run: ls -l /opt/Unity/
 
 #     - run: echo -n $ULF aaa > Unity.ulf
 #       env:
