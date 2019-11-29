@@ -101,12 +101,12 @@ jobs:
       with:
         unity-version: ${{ matrix.unity-version }}
         enable-cache: 'true'
-    - run: ls -l /opt/Unity/Editor
-    - run: du /opt/Unity/Editor
-    - run: ls -l /opt/Unity
-    - run: ls -l /opt/Unity/Unity-2018.4.9f1
-    - run: ls -l /opt/Unity/Unity-2018.4.9f1/Editor
-    - run: du /opt/Unity/Unity-2018.4.9f1
+    - run: ls -l /opt/Unity/Editor || exit 0
+    - run: du /opt/Unity/Editor || exit 0
+    - run: ls -l /opt/Unity || exit 0
+    - run: ls -l /opt/Unity/Unity-2018.4.9f1 || exit 0
+    - run: ls -l /opt/Unity/Unity-2018.4.9f1/Editor || exit 0
+    - run: du /opt/Unity/Unity-2018.4.9f1 || exit 0
     - run: /opt/Unity/Editor/Unity -batchmode -nographics -quit -logfile log.log -createManulActivationFile || exit 0
     - run: cat log.log
     - run: cat Unity_v${{ matrix.unity-version}}.alf
