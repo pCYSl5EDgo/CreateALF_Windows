@@ -6,7 +6,7 @@ jobs:
   build-ubuntu-test:
     runs-on: [ubuntu-latest]
     steps:
-    - run: wget https://beta.unity3d.com/download/2a3307d3869b/UnitySetup -O UnitySetUp
+    - run: wget https://beta.unity3d.com/download/ffacea4b84e7/UnitySetup -O UnitySetUp
     - run: sudo chmod +x UnitySetUp
     - run: ls -l
     - run: sudo ./UnitySetUp --help || exit 0
