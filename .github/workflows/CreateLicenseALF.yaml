@@ -112,7 +112,6 @@ jobs:
     - uses: pCYSl5EDgo/setup-unity@master
       with:
         unity-version: ${{ matrix.unity-version }}
-        enable-cache: 'true'
     - run: /opt/Unity/Editor/Unity -batchmode -nographics -quit -logfile log.log -createManualActivationFile || exit 0
     - run: cat log.log
     - run: cat Unity_v${{ matrix.unity-version}}.alf
