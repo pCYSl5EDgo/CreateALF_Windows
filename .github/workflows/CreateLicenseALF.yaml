@@ -25,19 +25,19 @@ jobs:
 #         ruby-version: '2.6.3'
 #     - run: gem install u3d -v 1.2.1
 #     - run: u3d install ${{ matrix.unity-version }} --all
-#   build-linux-all:
-#     runs-on: [ubuntu-latest]
-#     strategy:
-#       matrix:
-#         unity-version: [2019.1.0f2, 2018.3.0f2, 2018.1.0b8]
-#     steps:
-#     - uses: actions/setup-ruby@v1
-#       with:
-#         ruby-version: '2.6.3'
-#     - run: gem install u3d -v 1.2.1
-#     - run: sudo apt-get update
-#     - run: sudo apt-get -y install gconf-service lib32gcc1 lib32stdc++6 libasound2 libc6 libc6-i386 libcairo2 libcap2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libfreetype6 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libgl1-mesa-glx libglib2.0-0 libglu1-mesa libgtk2.0-0 libnspr4 libnss3 libpango1.0-0 libstdc++6 libx11-6 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxtst6 zlib1g debconf npm libpq5
-#     - run: sudo /opt/hostedtoolcache/Ruby/2.6.3/x64/bin/u3d install ${{ matrix.unity-version }} --all
+  build-linux-all:
+    runs-on: [ubuntu-latest]
+    strategy:
+      matrix:
+        unity-version: [2019.1.0f2, 2018.3.0f2, 2018.1.0b8]
+    steps:
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: '2.6.3'
+    - run: gem install u3d -v 1.2.1
+    - run: sudo apt-get update
+    - run: sudo apt-get -y install gconf-service lib32gcc1 lib32stdc++6 libasound2 libc6 libc6-i386 libcairo2 libcap2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libfreetype6 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libgl1-mesa-glx libglib2.0-0 libglu1-mesa libgtk2.0-0 libnspr4 libnss3 libpango1.0-0 libstdc++6 libx11-6 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxtst6 zlib1g debconf npm libpq5
+    - run: sudo /opt/hostedtoolcache/Ruby/2.6.3/x64/bin/u3d install ${{ matrix.unity-version }} --all
 
 #   build-windows-test1:
 #     runs-on: windows-latest
@@ -88,28 +88,28 @@ jobs:
 #     - run: /Applications/Unity/Unity.app/Contents/MacOS/Unity -quit -batchMode -createManualActivationFile -logfile || exit 0
 #     - run: cat Unity_v${{ matrix.unity-version }}.alf
 
-  build-ubuntu:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        unity-version: 
-        - 2018.4.9f1
+#   build-ubuntu:
+#     runs-on: ubuntu-latest
+#     strategy:
+#       matrix:
+#         unity-version: 
+#         - 2018.4.9f1
 #         - 2018.4.13f1
 #         - 2019.3.0f1
-    steps:
-    - uses: pCYSl5EDgo/setup-unity@master
-      with:
-        unity-version: ${{ matrix.unity-version }}
+#     steps:
+#     - uses: pCYSl5EDgo/setup-unity@master
+#       with:
+#         unity-version: ${{ matrix.unity-version }}
 #         enable-cache: 'true'
-    - run: ls -l /opt/Unity/Editor || exit 0
-    - run: du /opt/Unity/Editor || exit 0
-    - run: ls -l /opt/Unity || exit 0
-    - run: ls -l /opt/Unity/Unity-2018.4.9f1 || exit 0
-    - run: ls -l /opt/Unity/Unity-2018.4.9f1/Editor || exit 0
-    - run: du /opt/Unity/Unity-2018.4.9f1 || exit 0
-    - run: /opt/Unity/Editor/Unity -batchmode -nographics -quit -logfile log.log -createManualActivationFile || exit 0
-    - run: cat log.log
-    - run: cat Unity_v${{ matrix.unity-version}}.alf
+#     - run: ls -l /opt/Unity/Editor || exit 0
+#     - run: du /opt/Unity/Editor || exit 0
+#     - run: ls -l /opt/Unity || exit 0
+#     - run: ls -l /opt/Unity/Unity-2018.4.9f1 || exit 0
+#     - run: ls -l /opt/Unity/Unity-2018.4.9f1/Editor || exit 0
+#     - run: du /opt/Unity/Unity-2018.4.9f1 || exit 0
+#     - run: /opt/Unity/Editor/Unity -batchmode -nographics -quit -logfile log.log -createManualActivationFile || exit 0
+#     - run: cat log.log
+#     - run: cat Unity_v${{ matrix.unity-version}}.alf
 
 #     - run: echo -n $ULF aaa > Unity.ulf
 #       env:
