@@ -3,14 +3,14 @@ name: Create ALF File
 on: [push]
 
 jobs:
-  build-ubuntu-test:
-    runs-on: [ubuntu-latest]
-    steps:
-    - run: wget https://beta.unity3d.com/download/ffacea4b84e7/UnitySetup -O UnitySetUp
-    - run: sudo chmod +x UnitySetUp
-    - run: ls -l
-    - run: sudo ./UnitySetUp --help || exit 0
-    - run: ./UnitySetUp -v -L
+#   build-ubuntu-test:
+#     runs-on: [ubuntu-latest]
+#     steps:
+#     - run: wget https://beta.unity3d.com/download/ffacea4b84e7/UnitySetup -O UnitySetUp
+#     - run: sudo chmod +x UnitySetUp
+#     - run: ls -l
+#     - run: sudo ./UnitySetUp --help || exit 0
+#     - run: ./UnitySetUp -v -L
 #     - run: echo y | ./UnitySetUp --unattended --install-location="/opt/Unity" --components="Unity,Android,WebGL"
 #     - run: ls -l /opt/Unity/Editor/ || exit 0
 #     - run: ls -l /opt/Unity/Editor/Data/PlaybackEngines/AndroidPlayer || exit 0
@@ -99,28 +99,23 @@ jobs:
 #     - run: /Applications/Unity/Unity.app/Contents/MacOS/Unity -quit -batchMode -createManualActivationFile -logfile || exit 0
 #     - run: cat Unity_v${{ matrix.unity-version }}.alf
 
-#   build-ubuntu:
-#     runs-on: ubuntu-latest
-#     strategy:
-#       matrix:
-#         unity-version: 
-#         - 2018.4.9f1
-#         - 2018.4.13f1
-#         - 2019.3.0f1
-#     steps:
-#     - uses: pCYSl5EDgo/setup-unity@master
-#       with:
-#         unity-version: ${{ matrix.unity-version }}
-#         enable-cache: 'true'
-#     - run: ls -l /opt/Unity/Editor || exit 0
-#     - run: du /opt/Unity/Editor || exit 0
-#     - run: ls -l /opt/Unity || exit 0
-#     - run: ls -l /opt/Unity/Unity-2018.4.9f1 || exit 0
-#     - run: ls -l /opt/Unity/Unity-2018.4.9f1/Editor || exit 0
-#     - run: du /opt/Unity/Unity-2018.4.9f1 || exit 0
-#     - run: /opt/Unity/Editor/Unity -batchmode -nographics -quit -logfile log.log -createManualActivationFile || exit 0
-#     - run: cat log.log
-#     - run: cat Unity_v${{ matrix.unity-version}}.alf
+  build-ubuntu:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        unity-version: 
+        - 2018.4.9f1
+        - 2018.4.13f1
+        - 2019.3.0f1
+        - 2020.1.0a14
+    steps:
+    - uses: pCYSl5EDgo/setup-unity@master
+      with:
+        unity-version: ${{ matrix.unity-version }}
+        enable-cache: 'true'
+    - run: /opt/Unity/Editor/Unity -batchmode -nographics -quit -logfile log.log -createManualActivationFile || exit 0
+    - run: cat log.log
+    - run: cat Unity_v${{ matrix.unity-version}}.alf
 
 #     - run: echo -n $ULF aaa > Unity.ulf
 #       env:
