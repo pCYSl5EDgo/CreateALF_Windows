@@ -94,8 +94,8 @@ jobs:
       matrix:
         unity-version: 
         - 2018.4.9f1
-        - 2018.4.13f1
-        - 2019.3.0f1
+#         - 2018.4.13f1
+#         - 2019.3.0f1
     steps:
     - uses: pCYSl5EDgo/setup-unity@master
       with:
