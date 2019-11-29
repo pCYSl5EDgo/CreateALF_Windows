@@ -8,7 +8,9 @@ jobs:
     steps:
     - run: wget https://beta.unity3d.com/download/ffacea4b84e7/UnitySetup -O UnitySetup
     - run: sudo chmod +x UnitySetup
-    - run: echo y | UnitySetUp --unattended --install-location="/opt/Unity" --components="Unity,Android,WebGL"
+    - run: ls -l
+    - run: UnitySetup --help || exit 0
+    - run: echo y | UnitySetup --unattended --install-location="/opt/Unity" --components="Unity,Android,WebGL"
     - run: ls -l /opt/Unity/Editor/ || exit 0
     - run: ls -l /opt/Unity/Editor/Data/PlaybackEngines/AndroidPlayer || exit 0
 #   build-macos-all:
