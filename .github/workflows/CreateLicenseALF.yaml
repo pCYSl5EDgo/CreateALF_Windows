@@ -105,6 +105,7 @@ jobs:
     - run: du /opt/Unity/Editor
     - run: ls -l /opt/Unity
     - run: ls -l /opt/Unity/Unity-2018.4.9f1
+    - run: ls -l /opt/Unity/Unity-2018.4.9f1/Editor
     - run: du /opt/Unity/Unity-2018.4.9f1
     - run: /opt/Unity/Editor/Unity -batchmode -nographics -quit -logfile log.log -createManulActivationFile || exit 0
     - run: cat log.log
