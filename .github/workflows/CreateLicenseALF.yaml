@@ -6,13 +6,14 @@ jobs:
   build-ubuntu-test:
     runs-on: [ubuntu-latest]
     steps:
-    - run: wget https://beta.unity3d.com/download/7eb5456f98b4/UnitySetup -O UnitySetUp
+    - run: wget https://beta.unity3d.com/download/2a3307d3869b/UnitySetup -O UnitySetUp
     - run: sudo chmod +x UnitySetUp
     - run: ls -l
     - run: sudo ./UnitySetUp --help || exit 0
-    - run: echo y | ./UnitySetUp --unattended --install-location="/opt/Unity" --components="Unity,Android,WebGL"
-    - run: ls -l /opt/Unity/Editor/ || exit 0
-    - run: ls -l /opt/Unity/Editor/Data/PlaybackEngines/AndroidPlayer || exit 0
+    - run: ./UnitySetUp -v -L
+#     - run: echo y | ./UnitySetUp --unattended --install-location="/opt/Unity" --components="Unity,Android,WebGL"
+#     - run: ls -l /opt/Unity/Editor/ || exit 0
+#     - run: ls -l /opt/Unity/Editor/Data/PlaybackEngines/AndroidPlayer || exit 0
 #   build-macos-all:
 #     runs-on: [macOS-latest]
 #     strategy:
