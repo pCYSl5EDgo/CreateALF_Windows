@@ -100,8 +100,10 @@ jobs:
     - uses: pCYSl5EDgo/setup-unity@master
       with:
         unity-version: ${{ matrix.unity-version }}
-    - run: tar cv - /opt/Unity/ | 7z a -si -v400m unity.tar.7z 
+    - run: tar cv - /opt/Unity/ | 7z a -si -v400m unity.tar.7z
     - run: ls -l
+    - run: rm -rf /opt/Unity/
+    - run: cat unity.tar.7z* | 7z x -si -so | tar xf - -C /opt/Unity/
 
 #     - run: echo -n $ULF aaa > Unity.ulf
 #       env:
