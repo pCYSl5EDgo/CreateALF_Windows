@@ -100,7 +100,7 @@ jobs:
     - uses: pCYSl5EDgo/setup-unity@master
       with:
         unity-version: ${{ matrix.unity-version }}
-#         enable-cache: 'true'
+        enable-cache: 'true'
     - run: ls -l /opt/Unity/Editor || exit 0
     - run: du /opt/Unity/Editor || exit 0
     - run: ls -l /opt/Unity || exit 0
