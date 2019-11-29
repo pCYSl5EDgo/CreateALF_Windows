@@ -104,7 +104,8 @@ jobs:
     - run: ls -l
     - run: rm -rf /opt/Unity/
     - run: ls -l /opt/
-    - run: cat unity.tar.7z* | 7z x -si -so -t7z | tar xf - -C /opt/Unity/
+    - run: cat unity.tar.7z* > all.tar.7z
+    - run: 7z x all.tar.7z -so | tar xf - -C /opt/Unity/
     - run: ls -l /opt/
     - run: ls -l /opt/Unity/
 
