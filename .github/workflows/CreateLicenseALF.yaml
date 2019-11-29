@@ -100,25 +100,8 @@ jobs:
     - uses: pCYSl5EDgo/setup-unity@master
       with:
         unity-version: ${{ matrix.unity-version }}
-    - run: ls -l /opt/Unity/Editor/
-    - run: ls -l /opt/Unity/Editor/Data/
-    - run: |
-        tar cf - /opt/Unity/Editor/Data/MonoBleedingEdge | 7za a -si MonoBleedingEdge.tar.7z
-        tar cf - /opt/Unity/Editor/Data/BuildTargetTools | 7za a -si BuildTargetTools.tar.7z
-        tar cf - /opt/Unity/Editor/Data/il2cpp | 7za a -si il2cpp.tar.7z
-        tar cf - /opt/Unity/Editor/Data/Mono | 7za a -si Mono.tar.7z
-        tar cf - /opt/Unity/Editor/Data/Resources | 7za a -si Resources.tar.7z
-        tar cf - /opt/Unity/Editor/Data/Tools | 7za a -si Tools.tar.7z
-        tar cf - /opt/Unity/Editor/Data/NetStandard | 7za a -si NetStandard.tar.7z
-        tar cf - /opt/Unity/Editor/Data/PlaybackEngines | 7za a -si PlaybackEngines.tar.7z
-        tar cf - /opt/Unity/Editor/Data/PackageManager | 7za a -si PackageManager.tar.7z
-        tar cf - /opt/Unity/Editor/Data/UnityExtensions | 7za a -si UnityExtensions.tar.7z
-        tar cf - /opt/Unity/Editor/Data/Managed | 7za a -si Managed.tar.7z
-        tar cf - /opt/Unity/Editor/Data/CGIncludes | 7za a -si CGIncludes.tar.7z
-        tar cf - /opt/Unity/Editor/Data/MonoEmbedRuntime | 7za a -si MonoEmbedRuntime.tar.7z
-        tar cf - /opt/Unity/Editor/Data/locales | 7za a -si locales.tar.7z
-        tar cf - /opt/Unity/Editor/Data/BugReporter | 7za a -si BugReporter.tar.7z
-        ls -l
+    - run: tar cv - /opt/Unity/ | 7z a -si -v400m unity.tar.7z 
+    - run: ls -l
 
 #     - run: echo -n $ULF aaa > Unity.ulf
 #       env:
