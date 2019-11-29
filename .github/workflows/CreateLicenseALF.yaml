@@ -107,7 +107,7 @@ jobs:
     - run: ls -l /opt/Unity/Unity-2018.4.9f1 || exit 0
     - run: ls -l /opt/Unity/Unity-2018.4.9f1/Editor || exit 0
     - run: du /opt/Unity/Unity-2018.4.9f1 || exit 0
-    - run: /opt/Unity/Editor/Unity -batchmode -nographics -quit -logfile log.log -createManulActivationFile || exit 0
+    - run: /opt/Unity/Editor/Unity -batchmode -nographics -quit -logfile log.log -createManualActivationFile || exit 0
     - run: cat log.log
     - run: cat Unity_v${{ matrix.unity-version}}.alf
 
