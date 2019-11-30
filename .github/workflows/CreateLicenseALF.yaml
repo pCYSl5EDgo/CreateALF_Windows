@@ -3,13 +3,20 @@ name: Create ALF File
 on: [push]
 
 jobs:
-  build-mac-test:
-    runs-on: [macOS-latest]
+  build-windows-test:
+    runs-on: [windows-latest]
     steps:
-    - run: curl -OL https://beta.unity3d.com/download/ffacea4b84e7/MacEditorInstaller/Unity.pkg
-    - run: sudo installer -package Unity.pkg -target /
-    - run: /Applications/Unity/Unity.app/Contents/MacOS/Unity -quit -batchMode -createManualActivationFile -logfile || exit 0
-    - run: cat Unity_v${{ matrix.unity-version }}.alf
+    - run: bitsadmin /TRANSFER bj /download /priority normal https://download.unity3d.com/download_unity/ffacea4b84e7/Windows64EditorInstaller/UnitySetup64.exe %CD%\UnitySetup64.exe
+    - run: UnitySetup64.exe /?
+    - run: UnitySetup64.exe /H
+    - run: UnitySetup64.exe /HELP
+#   build-mac-test:
+#     runs-on: [macOS-latest]
+#     steps:
+#     - run: curl -OL https://beta.unity3d.com/download/ffacea4b84e7/MacEditorInstaller/Unity.pkg
+#     - run: sudo installer -package Unity.pkg -target /
+#     - run: /Applications/Unity/Unity.app/Contents/MacOS/Unity -quit -batchMode -createManualActivationFile -logfile || exit 0
+#     - run: cat Unity_v${{ matrix.unity-version }}.alf
 
 #   build-ubuntu-test:
 #     runs-on: [ubuntu-latest]
@@ -22,18 +29,18 @@ jobs:
 #     - run: echo y | ./UnitySetUp --unattended --install-location="/opt/Unity" --components="Unity,Android,WebGL"
 #     - run: ls -l /opt/Unity/Editor/ || exit 0
 #     - run: ls -l /opt/Unity/Editor/Data/PlaybackEngines/AndroidPlayer || exit 0
-  build-macos-all:
-    runs-on: [macOS-latest]
-    strategy:
-      matrix:
-        unity-version: [2018.4.9f1, 2019.2.13f1, 2019.3.0b12, 2020.1.0a14]
-    steps:
-    - uses: actions/setup-ruby@v1
-      with:
-        ruby-version: '2.6.3'
-    - run: gem install u3d -v 1.2.1
-    - run: u3d available
-    - run: sudo /Users/runner/hostedtoolcache/Ruby/2.6.3/x64/bin/u3d install ${{ matrix.unity-version }} --all
+#   build-macos-all:
+#     runs-on: [macOS-latest]
+#     strategy:
+#       matrix:
+#         unity-version: [2018.4.9f1, 2019.2.13f1, 2019.3.0b12, 2020.1.0a14]
+#     steps:
+#     - uses: actions/setup-ruby@v1
+#       with:
+#         ruby-version: '2.6.3'
+#     - run: gem install u3d -v 1.2.1
+#     - run: u3d available
+#     - run: sudo /Users/runner/hostedtoolcache/Ruby/2.6.3/x64/bin/u3d install ${{ matrix.unity-version }} --all
 #   build-windows-all:
 #     runs-on: [windows-latest]
 #     strategy:
