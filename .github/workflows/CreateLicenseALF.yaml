@@ -7,6 +7,7 @@ jobs:
     runs-on: [windows-latest]
     steps:
     - run: bitsadmin /TRANSFER bj /download /priority normal https://download.unity3d.com/download_unity/ffacea4b84e7/Windows64EditorInstaller/UnitySetup64.exe %CD%\UnitySetup64.exe
+      shell: cmd
     - run: UnitySetup64.exe /?
     - run: UnitySetup64.exe /H
     - run: UnitySetup64.exe /HELP
