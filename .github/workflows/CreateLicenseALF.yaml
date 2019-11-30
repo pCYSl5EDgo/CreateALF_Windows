@@ -9,8 +9,11 @@ jobs:
     - run: bitsadmin /TRANSFER bj /download /priority normal https://download.unity3d.com/download_unity/ffacea4b84e7/Windows64EditorInstaller/UnitySetup64.exe %CD%\UnitySetup64.exe
       shell: cmd
     - run: UnitySetup64.exe /?
+      continue-on-error: true
     - run: UnitySetup64.exe /H
+      continue-on-error: true
     - run: UnitySetup64.exe /HELP
+      continue-on-error: true
 #   build-mac-test:
 #     runs-on: [macOS-latest]
 #     steps:
