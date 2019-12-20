@@ -3,13 +3,13 @@ name: Create ALF File
 on: [push]
 
 jobs:
-  build-windows-test:
-    runs-on: [windows-latest]
-    steps:
-    - run: bitsadmin /TRANSFER bj /download /priority normal https://download.unity3d.com/download_unity/ffacea4b84e7/Windows64EditorInstaller/UnitySetup64.exe %CD%\UnitySetup64.exe
-      shell: cmd
-    - run: ./UnitySetup64.exe /L /UI=reduced /S
-      continue-on-error: true
+#   build-windows-test:
+#     runs-on: [windows-latest]
+#     steps:
+#     - run: bitsadmin /TRANSFER bj /download /priority normal https://download.unity3d.com/download_unity/ffacea4b84e7/Windows64EditorInstaller/UnitySetup64.exe %CD%\UnitySetup64.exe
+#       shell: cmd
+#     - run: ./UnitySetup64.exe /L /UI=reduced /S
+#       continue-on-error: true
 #   build-mac-test:
 #     runs-on: [macOS-latest]
 #     steps:
@@ -80,57 +80,51 @@ jobs:
 #         & 'C:\Program Files\Unity_2018.4.13f1\Editor\Unity.exe' -quit -batchMode -nographics -logfile -createManualActivationFile
 #     - run: cat Unity_v2018.4.13f1.alf
   
-#   build-windows:
-#     runs-on: windows-latest
-#     strategy:
-#       matrix:
-#         unity-version: [2018.4.9f1, 2020.1.0a14]
-#     steps:
-#     - id: z
-#       uses: pCYSl5EDgo/setup-unity@master
-#       with:
-#         unity-version: ${{ matrix.unity-version }}
-#     - run: dir "C:\Program Files\Unity\"
-#     - run: dir 'C:\Program Files\Unity\Editor\'
-#     - run: echo ${{ steps.z.outputs.id }}
-#     - run: |
-#         & "C:\Program Files\Unity\Editor\Unity.exe" -quit -batchMode -nographics -logfile -createManualActivationFile
-#     - run: dir
-#     - run: cat Unity_v${{ matrix.unity-version }}.alf
+  build-windows:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        unity-version: [2018.4.9f1, 2020.1.0a14]
+    steps:
+    - id: z
+      uses: pCYSl5EDgo/setup-unity@master
+      with:
+        unity-version: ${{ matrix.unity-version }}
+    - run: dir "C:\Program Files\Unity\"
+    - run: dir 'C:\Program Files\Unity\Editor\'
+    - run: cat 'C:\Program Files\Unity\Editor\Data\Tools\RoslynScripts\unity_csc.bat'
     
-#   build-mac:
-#     runs-on: macOS-latest
-#     strategy:
-#       matrix:
-#         unity-version: [2018.4.9f1, 2020.1.0a14]
-#     steps:
-#     - uses: pCYSl5EDgo/setup-unity@master
-#       with:
-#         unity-version: ${{ matrix.unity-version }}
-#     - run: |
-#         ls -l /Applications/Unity/
-#         ls -l /Applications/Unity/Unity.app/
-#         ls -l /Applications/Unity/Unity.app/Contents/
-#         ls -l /Applications/Unity/Unity.app/Contents/Managed/
-#     - run: /Applications/Unity/Unity.app/Contents/MacOS/Unity -quit -batchMode -createManualActivationFile -logfile || exit 0
-#     - run: cat Unity_v${{ matrix.unity-version }}.alf
+  build-mac:
+    runs-on: [macos-latest]
+    strategy:
+      matrix:
+        unity-version: [2018.4.9f1, 2020.1.0a14]
+    steps:
+    - uses: pCYSl5EDgo/setup-unity@master
+      with:
+        unity-version: ${{ matrix.unity-version }}
+    - run: |
+        ls -l /Applications/Unity/
+        ls -l /Applications/Unity/Unity.app/
+        ls -l /Applications/Unity/Unity.app/Contents/
+        ls -l /Applications/Unity/Unity.app/Contents/Managed/
+    - run: /Applications/Unity/Unity.app/Contents/MacOS/Unity -quit -batchMode -createManualActivationFile -logfile || exit 0
+    - run: cat Unity_v${{ matrix.unity-version }}.alf
 
-#   build-ubuntu:
-#     runs-on: ubuntu-latest
-#     strategy:
-#       matrix:
-#         unity-version: 
-#         - 2018.4.9f1
-#         - 2018.4.13f1
-#         - 2019.3.0f1
-#         - 2020.1.0a14
-#     steps:
-#     - uses: pCYSl5EDgo/setup-unity@master
-#       with:
-#         unity-version: ${{ matrix.unity-version }}
-#     - run: /opt/Unity/Editor/Unity -batchmode -nographics -quit -logfile log.log -createManualActivationFile || exit 0
-#     - run: cat log.log
-#     - run: cat Unity_v${{ matrix.unity-version}}.alf
+  build-ubuntu:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        unity-version: 
+        - 2018.4.9f1
+        - 2018.4.13f1
+        - 2019.3.0f1
+        - 2020.1.0a14
+    steps:
+    - uses: pCYSl5EDgo/setup-unity@master
+      with:
+        unity-version: ${{ matrix.unity-version }}
+    - run: ls -l /opt/Unity/Editor/Data/Tools/RoslynScripts
 
 #     - run: echo -n $ULF aaa > Unity.ulf
 #       env:
