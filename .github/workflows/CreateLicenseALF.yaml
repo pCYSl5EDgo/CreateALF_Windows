@@ -90,7 +90,7 @@ jobs:
       uses: pCYSl5EDgo/setup-unity@master
       with:
         unity-version: ${{ matrix.unity-version }}
-    - run: dir 'C:\Program Files\Unity\Editor\Data\Tools'
+    - run: dir 'C:\Program Files\Unity\Editor\Data\Tools\RoslynScripts'
 #     - run: get-content 'C:\Program Files\Unity\Editor\Data\Tools\RoslynScripts\unity_csc.bat'
     
   build-mac:
@@ -103,7 +103,7 @@ jobs:
       with:
         unity-version: ${{ matrix.unity-version }}
     - run: |
-        ls -l /Applications/Unity/Unity.app/Contents/Tools/
+        ls -l /Applications/Unity/Unity.app/Contents/Tools/RoslynNet46
         #cat /Applications/Unity/Unity.app/Contents/Tools/RoslynScripts/unity_csc
 
   build-ubuntu:
@@ -119,7 +119,7 @@ jobs:
     - uses: pCYSl5EDgo/setup-unity@master
       with:
         unity-version: ${{ matrix.unity-version }}
-    - run: ls -l /opt/Unity/Editor/Data/Tools
+    - run: ls -l /opt/Unity/Editor/Data/Tools/RoslynNet46
 
 #     - run: echo -n $ULF aaa > Unity.ulf
 #       env:
