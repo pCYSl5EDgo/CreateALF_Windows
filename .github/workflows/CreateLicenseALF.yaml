@@ -80,34 +80,34 @@ jobs:
 #         & 'C:\Program Files\Unity_2018.4.13f1\Editor\Unity.exe' -quit -batchMode -nographics -logfile -createManualActivationFile
 #     - run: cat Unity_v2018.4.13f1.alf
   
-  build-windows:
-    runs-on: windows-latest
-    strategy:
-      matrix:
-        unity-version: [2018.4.9f1, 2020.1.0a14]
-    steps:
-    - id: z
-      uses: pCYSl5EDgo/setup-unity@master
-      with:
-        unity-version: ${{ matrix.unity-version }}
-    - run: dir 'C:\Program Files\Unity\Editor\Data\Tools\RoslynScripts'
-      continue-on-error: true
-    - run: dir 'C:\Program Files\Unity\Editor\Data\Tools\Roslyn'
-      continue-on-error: true
+ # build-windows:
+#    runs-on: windows-latest
+   # strategy:
+ #     matrix:
+  #      unity-version: [2018.4.9f1, 2020.1.0a14]
+ #   steps:
+ #   - id: z
+#      uses: pCYSl5EDgo/setup-unity@master
+   #   with:
+ #       unity-version: ${{ matrix.unity-version }}
+  #  - run: dir 'C:\Program Files\Unity\Editor\Data\Tools\RoslynScripts'
+ #     continue-on-error: true
+#    - run: dir 'C:\Program Files\Unity\Editor\Data\Tools\Roslyn'
+   #   continue-on-error: true
 #     - run: get-content 'C:\Program Files\Unity\Editor\Data\Tools\RoslynScripts\unity_csc.bat'
     
-  build-mac:
-    runs-on: [macos-latest]
-    strategy:
-      matrix:
-        unity-version: [2018.4.9f1, 2020.1.0a14]
-    steps:
-    - uses: pCYSl5EDgo/setup-unity@master
-      with:
-        unity-version: ${{ matrix.unity-version }}
-    - run: |
-        ls -l /Applications/Unity/Unity.app/Contents/Tools/RoslynNet46
-        ls -l /Applications/Unity/Unity.app/Contents/Tools/Roslyn
+#  build-mac:
+   # runs-on: [macos-latest]
+ #   strategy:
+  #    matrix:
+ #       unity-version: [2018.4.9f1, 2020.1.0a14]
+  #  steps:
+ #   - uses: pCYSl5EDgo/setup-unity@master
+ #     with:
+  #      unity-version: ${{ matrix.unity-version }}
+  #  - run: |
+ #       ls -l /Applications/Unity/Unity.app/Contents/Tools/RoslynNet46
+#        ls -l /Applications/Unity/Unity.app/Contents/Tools/Roslyn
         #cat /Applications/Unity/Unity.app/Contents/Tools/RoslynScripts/unity_csc
 
   build-ubuntu:
@@ -115,10 +115,7 @@ jobs:
     strategy:
       matrix:
         unity-version: 
-        - 2018.4.9f1
-        - 2018.4.13f1
-        - 2019.3.0f1
-        - 2020.1.0a14
+        - 2018.4.15f1
     steps:
     - uses: pCYSl5EDgo/setup-unity@master
       with:
@@ -126,6 +123,14 @@ jobs:
     - run: |
         ls -l /opt/Unity/Editor/Data/Tools/Roslyn
         ls -l /opt/Unity/Editor/Data/Tools/RoslynNet46
+    - run: /opt/Unity/Editor/Unity -quit -batchMode -nographics -logfile -createManualActivationFile
+    - run: |
+        mkdir a
+        mv Unity_v${{ matrix.unity-version }}.alf a/
+    - uses: actions/upload-artifact@master
+      with:
+        path: a
+        name: ${{ matrix.unity-version }}
 
 #     - run: echo -n $ULF aaa > Unity.ulf
 #       env:
