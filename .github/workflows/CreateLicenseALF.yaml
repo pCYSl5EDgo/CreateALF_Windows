@@ -123,7 +123,7 @@ jobs:
     - run: |
         ls -l /opt/Unity/Editor/Data/Tools/Roslyn
         ls -l /opt/Unity/Editor/Data/Tools/RoslynNet46
-    - run: /opt/Unity/Editor/Unity -quit -batchMode -nographics -logfile -createManualActivationFile
+    - run: /opt/Unity/Editor/Unity -quit -batchMode -nographics -logfile -createManualActivationFile || exit 0
     - run: |
         mkdir a
         mv Unity_v${{ matrix.unity-version }}.alf a/
