@@ -7,8 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        unity-version: 
-        - 2018.4.15f1
+        unity-version:
+        - 2018.4.18f1
+        - 2019.3.3f1
     steps:
     - uses: pCYSl5EDgo/setup-unity@master
       with:
